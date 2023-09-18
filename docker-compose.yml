@@ -1,0 +1,32 @@
+version: '3.4'
+
+services:
+  todo-api:
+    build:
+      context: .
+      target: development
+    volumes:
+      - ./:/usr/src/app
+      - /usr/src/app/node_modules
+    ports:
+      - 3000:3000
+    container_name: "todo-api"
+    command: npm run dev
+    env_file: .env
+    depends_on:
+      - todo-api-db
+
+  todo-api-db:
+    image: postgres:alpine
+    ports:
+      - "5432:5432"
+    container_name: "todo-api-db"
+    volumes:
+      - ./postgresql_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    
+volumes:
+  postgresql_data: 
+    driver: local
