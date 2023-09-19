@@ -2,7 +2,7 @@ import { IUserRepository } from "../../repositories/IUserRepository"
 import { UserIdNotFound } from "./errors/UserIdNotFound"
 
 type RemoveUserRequest = {
-  id: string
+  userId: string
 }
 
 type RemoveUserResponse = void
@@ -12,13 +12,13 @@ export class RemoveUser {
     private usersRepository: IUserRepository,
   ) {}
   
-  async execute ({ id }: RemoveUserRequest): Promise<RemoveUserResponse> {
-    const user = await this.usersRepository.findById(id)
+  async execute ({ userId }: RemoveUserRequest): Promise<RemoveUserResponse> {
+    const user = await this.usersRepository.findById(userId)
 
     if (!user) {
-      throw new UserIdNotFound(id)
+      throw new UserIdNotFound(userId)
     }
 
-    await this.usersRepository.delete(id)
+    await this.usersRepository.delete(userId)
   }
 }

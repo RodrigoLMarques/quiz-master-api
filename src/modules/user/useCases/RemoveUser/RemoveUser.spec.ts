@@ -17,7 +17,7 @@ describe('Remove user use case', () => {
 
     await usersRepository.create(user)
     await removeUser.execute({ 
-      id: user.id
+      userId: user.id
     })
 
     const result = await usersRepository.findById('user-id')
@@ -28,7 +28,7 @@ describe('Remove user use case', () => {
   it('deve ser rejeitado remover id inválido', async () => {
     expect(async () => {
       await removeUser.execute({ 
-        id: 'invalid-id' 
+        userId: 'invalid-id' 
       })
     }).rejects.toThrow()
   })

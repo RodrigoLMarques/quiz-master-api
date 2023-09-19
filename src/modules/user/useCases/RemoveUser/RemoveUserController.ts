@@ -3,7 +3,7 @@ import { HttpResponse, adapt, ok } from "./../../../../core/infra/HttpResponse";
 import { RemoveUser } from "./RemoveUser";
 
 type RemoveUserControllerRequest = {
-  id: string
+  userId: string
 }
 
 export class RemoveUserController implements Controller {
@@ -14,7 +14,7 @@ export class RemoveUserController implements Controller {
   async handle (params: RemoveUserControllerRequest): Promise<HttpResponse> {
     try {
       this.removeUser.execute({
-        id: params.id
+        userId: params.userId
       })
 
       return ok()

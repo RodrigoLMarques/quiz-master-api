@@ -1,4 +1,4 @@
-import { InvalidEmailOrPasswordError } from "src/modules/user/useCases/AuthenticateUser/errors/InvalidEmailOrPasswordError";
+import { InvalidEmailOrPasswordError } from "./../../../../modules/user/useCases/AuthenticateUser/errors/InvalidEmailOrPasswordError";
 import { JWT } from "../../domain/user/JWT";
 import { IUserRepository } from "../../repositories/IUserRepository"
 

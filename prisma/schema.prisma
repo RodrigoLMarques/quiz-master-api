@@ -21,3 +21,90 @@ model User {
 
   @@map("users")
 }
+
+model Quiz {
+  id          String  @id
+  title       String
+  description String
+  image_file  String?
+  questions   Question[]
+  categorie   Categorie[]
+
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now()) @updatedAt
+
+  @@map("quiz")
+}
+
+model Categorie {
+  id         String  @id
+  name       String
+  quiz_id    String
+  quiz       Quiz @relation(fields: [quiz_id], references: [id])
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  @@map("categories")
+}
+
+model Question {
+  id         String  @id
+  quiz_id    String
+  quiz       Quiz @relation(fields: [quiz_id], references: [id])
+  text       String
+  answers    Answer[]
+
+  created_at DateTime @default(now())
+  updated_at DateTime @default(now()) @updatedAt
+
+  @@map("questions")
+}
+
+model Answer {
+  id          String  @id
+  text        String
+  question_id String
+  question    Question @relation(fields: [question_id], references: [id])
+  is_correct  Boolean
+
+  created_at  DateTime @default(now())
+  updated_at  DateTime @default(now()) @updatedAt
+
+  @@map("answers")
+}
+
+// model Media  {
+//   id String  @id
+//   question_id String
+//   image_file String
+
+//   created_at DateTime @default(now())
+//   updated_at DateTime @default(now()) @updatedAt
+
+//   @@map("media")
+// }
+
+// model HistoryQuiz {
+//   id String  @id
+//   id_user String
+//   id_quiz String
+
+//   created_at DateTime @default(now())
+//   updated_at DateTime @default(now()) @updatedAt
+
+//   @@map("history_quiz")
+// }
+
+// model HistoryQuestions {
+//   id String  @id
+//   id_history_quiz String
+//   id_question String
+//   id_answer String
+
+//   created_at DateTime @default(now())
+//   updated_at DateTime @default(now()) @updatedAt
+
+//   @@map("history_questions")
+// }
+
