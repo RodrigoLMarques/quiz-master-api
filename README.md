@@ -1,2 +1,2 @@
-# todo-api
-ToDo API - Gerenciamento de Tarefas e Listas em Node.js com Princípios SOLID.
+# quiz-master-api
+Quiz Master - API de um sistema de quiz em Node.js seguindo Clean Architeture, DDD e princípios SOLID.
