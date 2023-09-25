@@ -24,7 +24,7 @@ describe('Get all users use case', () => {
     const response = await getAllUsers.execute()
 
     expect(response.length).toBe(2)
-    expect(response[0].email.value).toEqual(user1.email.value)
-    expect(response[1].email.value).toEqual(user2.email.value)
+    expect(response[0].email).toEqual(user1.email)
+    expect(response[1].email).toEqual(user2.email)
   })
 })

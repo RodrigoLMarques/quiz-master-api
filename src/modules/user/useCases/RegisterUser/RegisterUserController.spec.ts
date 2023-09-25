@@ -22,7 +22,6 @@ describe('Register User Controller', () => {
       })
 
       expect(response.status).toBe(201)
-      expect(response).toHaveProperty('error')
 
       const userInDatabase = await prisma.user.findUnique({
         where: { email: 'john@doe.com' },

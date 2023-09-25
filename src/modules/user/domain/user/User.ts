@@ -13,15 +13,23 @@ export interface IUserProps {
 export class User extends Entity<IUserProps> {
 
   get name () {
-    return this.props.name
+    return this.props.name.value
   }
   
   get email () {
-    return this.props.email
+    return this.props.email.value
   }
 
   get password () {
     return this.props.password
+  }
+
+  set name (name: string) {
+    this.props.name = Name.create(name)
+  }
+  
+  set email (email: string) {
+    this.props.email = Email.create(email)
   }
 
   private constructor (props: IUserProps, id?: string) {

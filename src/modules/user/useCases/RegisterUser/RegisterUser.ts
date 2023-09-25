@@ -32,10 +32,10 @@ export class RegisterUser {
       password: Password.create(password, false)
     })
 
-    const userAlreadyExists = await this.userRepository.exists(user.email.value)
+    const userAlreadyExists = await this.userRepository.exists(user.email)
 
     if (userAlreadyExists) {
-      throw new AccountAlreadyExistsError(user.email.value)
+      throw new AccountAlreadyExistsError(user.email)
     }
 
     await this.userRepository.create(user)

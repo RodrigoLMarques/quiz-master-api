@@ -19,8 +19,8 @@ export class GetUserDetailsController implements Controller {
 
       const user = {
         id: result.id,
-        name: result.name.value,
-        email: result.email.value,
+        name: result.name,
+        email: result.email,
       }
 
       return ok({ data: user })

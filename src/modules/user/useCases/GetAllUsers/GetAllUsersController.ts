@@ -14,8 +14,8 @@ export class GetAllUsersController implements Controller {
       const users = result.map(user => {
         return {
           id: user.id,
-          name: user.name.value,
-          email: user.email.value
+          name: user.name,
+          email: user.email
         }
       })
 

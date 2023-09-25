@@ -12,7 +12,7 @@ export class InMemoryUserRepository implements IUserRepository {
   }
 
   async findByEmail(email: string): Promise<User> {
-    return this.users.find(user => user.email.value === email)
+    return this.users.find(user => user.email === email)
   }
 
   async findAll(): Promise<User[]> {
@@ -20,11 +20,19 @@ export class InMemoryUserRepository implements IUserRepository {
   }
 
   async exists(email: string): Promise<boolean> {
-    return this.users.some(user => user.email.value === email)
+    return this.users.some(user => user.email === email)
   }
 
   async create(user: User): Promise<void> {
     this.users.push(user)
+  }
+
+  async save(user: User): Promise<void> {
+    const userIndex = this.users.findIndex(
+      findUser=> findUser.id === user.id
+    )
+
+    this.users[userIndex] = user
   }
 
   async delete(id: string): Promise<void> {

@@ -47,6 +47,17 @@ export class PrismaUserRepository implements IUserRepository {
       await prisma.user.create({ data })
   }
 
+  async save(user: User): Promise<void> {
+    const data = UserMapper.toPersistence(user)
+
+    await prisma.user.update({
+      where: {
+        id: user.id,
+      },
+      data
+    })
+  }
+
   async delete(id: string): Promise<void> {
     await prisma.user.delete({
       where: { id }
